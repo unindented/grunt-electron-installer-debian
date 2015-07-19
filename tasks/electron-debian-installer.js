@@ -4,8 +4,7 @@ var _ = require('lodash');
 var asar = require('asar');
 var async = require('async');
 var child = require('child_process');
-var fs = require('fs');
-var fse = require('fs-extra');
+var fs = require('fs-extra');
 var fsize = require('get-folder-size');
 var path = require('path');
 var temp = require('temp').track();
@@ -60,7 +59,7 @@ var readPackage = function (options, callback) {
       callback(null, JSON.parse(asar.extractFile(withAsar, 'package.json')));
     }
     else {
-      callback(null, fse.readJsonSync(withoutAsar));
+      callback(null, fs.readJsonSync(withoutAsar));
     }
   }
   catch (err) {
@@ -203,7 +202,7 @@ var createControl = function (options, dir, callback) {
 
   async.waterfall([
     async.apply(generateTemplate, controlSrc, options),
-    async.apply(fse.outputFile, controlDest)
+    async.apply(fs.outputFile, controlDest)
   ], function (err) {
     callback(err && new Error('Error creating control file: ' + (err.message || err)));
   });
@@ -218,7 +217,7 @@ var createBinary = function (options, dir, callback) {
   var binDest = path.join(binDir, options.name);
 
   async.waterfall([
-    async.apply(fse.ensureDir, binDir),
+    async.apply(fs.ensureDir, binDir),
     async.apply(fs.symlink, binSrc, binDest, 'file')
   ], function (err) {
     callback(err && new Error('Error creating binary file: ' + (err.message || err)));
@@ -236,7 +235,7 @@ var createDesktop = function (options, dir, callback) {
 
   async.waterfall([
     async.apply(generateTemplate, desktopSrc, options),
-    async.apply(fse.outputFile, desktopDest)
+    async.apply(fs.outputFile, desktopDest)
   ], function (err) {
     callback(err && new Error('Error creating desktop file: ' + (err.message || err)));
   });
@@ -248,7 +247,7 @@ var createDesktop = function (options, dir, callback) {
 var createIcon = function (options, dir, callback) {
   var iconFile = path.join(dir, 'usr/share/pixmaps', options.name + '.png');
 
-  fse.copy(options.icon, iconFile, function (err) {
+  fs.copy(options.icon, iconFile, function (err) {
     callback(err && new Error('Error creating icon file: ' + (err.message || err)));
   });
 };
@@ -261,7 +260,7 @@ var createCopyright = function (options, dir, callback) {
 
   async.waterfall([
     async.apply(readLicense, options),
-    async.apply(fse.outputFile, copyrightFile)
+    async.apply(fs.outputFile, copyrightFile)
   ], function (err) {
     callback(err && new Error('Error creating copyright file: ' + (err.message || err)));
   });
@@ -276,7 +275,7 @@ var createOverrides = function (options, dir, callback) {
 
   async.waterfall([
     async.apply(generateTemplate, overridesSrc, options),
-    async.apply(fse.outputFile, overridesDest)
+    async.apply(fs.outputFile, overridesDest)
   ], function (err) {
     callback(err && new Error('Error creating lintian overrides file: ' + (err.message || err)));
   });
@@ -289,8 +288,8 @@ var createApplication = function (options, dir, callback) {
   var applicationDir = path.join(dir, 'usr/share', options.name);
 
   async.waterfall([
-    async.apply(fse.ensureDir, applicationDir),
-    async.apply(fse.copy, options.src, applicationDir)
+    async.apply(fs.ensureDir, applicationDir),
+    async.apply(fs.copy, options.src, applicationDir)
   ], function (err) {
     callback(err && new Error('Error copying application directory: ' + (err.message || err)));
   });
@@ -304,7 +303,7 @@ var createDir = function (options, callback) {
     async.apply(temp.mkdir, 'electron-'),
     function (dir, callback) {
       dir = path.join(dir, options.name + '_' + options.version + '_' + options.arch);
-      fse.ensureDir(dir, callback);
+      fs.ensureDir(dir, callback);
     }
   ], function (err, dir) {
     callback(err && new Error('Error creating temporary directory: ' + (err.message || err)), dir);
@@ -341,7 +340,7 @@ var createPackage = function (options, dir, callback) {
  * Move the package to the specified destination.
  */
 var movePackage = function (options, dir, callback) {
-  fse.move(dir + '.deb', options.dest, {clobber: true}, function (err) {
+  fs.move(dir + '.deb', options.dest, {clobber: true}, function (err) {
     callback(err && new Error('Error moving package: ' + (err.message || err)), dir);
   });
 };
