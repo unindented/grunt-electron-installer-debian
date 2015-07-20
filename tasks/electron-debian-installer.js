@@ -140,10 +140,10 @@ var getDefaults = function (task, callback) {
         (pkg.author.email != null ? ' <' + pkg.author.email + '>' : '')
       ),
 
-      homepage: pkg.author && (typeof pkg.author === 'string' ?
+      homepage: pkg.homepage || (pkg.author && (typeof pkg.author === 'string' ?
         pkg.author.replace(/.*\(([^)]+)\).*/, '$1') :
         pkg.author.url
-      ),
+      )),
 
       bin: pkg.name || 'electron',
       icon: path.resolve(__dirname, '../resources/icon.png'),
