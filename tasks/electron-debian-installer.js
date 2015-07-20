@@ -100,6 +100,7 @@ var getDefaults = function (task, callback) {
       description: pkg.description,
       productDescription: pkg.productDescription || pkg.description,
       version: pkg.version || '0.0.0',
+      revision: pkg.revision || '1',
 
       section: 'utils',
       priority: 'optional',

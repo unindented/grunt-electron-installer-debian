@@ -134,6 +134,12 @@ Default: `package.version`
 
 Version number of the package, used in the [`Version` field of the `control` specification](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-Version).
 
+#### options.revision
+Type: `String`
+Default: `package.revision`
+
+Revision number of the package, used in the [`Version` field of the `control` specification](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-Version).
+
 #### options.section
 Type: `String`
 Default: `"utils"`
