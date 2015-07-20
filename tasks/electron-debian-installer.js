@@ -6,6 +6,7 @@ var async = require('async');
 var child = require('child_process');
 var fs = require('fs-extra');
 var fsize = require('get-folder-size');
+var glob = require('glob');
 var path = require('path');
 var temp = require('temp').track();
 var wrap = require('word-wrap');
@@ -341,7 +342,13 @@ var createPackage = function (options, dir, callback) {
  * Move the package to the specified destination.
  */
 var movePackage = function (options, dir, callback) {
-  fs.move(dir + '.deb', options.dest, {clobber: true}, function (err) {
+  var packagePattern = path.join(dir, '../*.deb');
+  async.waterfall([
+    async.apply(glob, packagePattern),
+    function (files, callback) {
+      fs.move(files[0], options.dest, {clobber: true}, callback);
+    }
+  ], function (err) {
     callback(err && new Error('Error moving package: ' + (err.message || err)), dir);
   });
 };
