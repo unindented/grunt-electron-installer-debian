@@ -1,7 +1,7 @@
 {
   "name":        "grunt-electron-debian-installer",
   "description": "Create a Debian package for your Electron app.",
-  "version":     "0.0.3",
+  "version":     "0.0.4",
   "license":     "MIT",
 
   "author": {
