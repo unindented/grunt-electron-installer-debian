@@ -29,12 +29,15 @@ module.exports = function (grunt) {
         depends: [],
         recommends: [],
         suggests: [],
-        categories: []
+        categories: [],
+        rename: function (dest) {
+          return dest + '<%= name %>_<%= arch %>.deb';
+        }
       },
 
       'app-with-asar': {
         src: 'test/fixtures/app-with-asar/',
-        dest: 'test/fixtures/out/foo_i386.deb'
+        dest: 'test/fixtures/out/'
       },
 
       'app-without-asar': {
@@ -53,7 +56,7 @@ module.exports = function (grunt) {
           ]
         },
         src: 'test/fixtures/app-without-asar/',
-        dest: 'test/fixtures/out/bar_amd64.deb'
+        dest: 'test/fixtures/out/'
       }
     },
 

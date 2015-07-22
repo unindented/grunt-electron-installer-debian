@@ -346,10 +346,13 @@ var movePackage = function (options, dir, callback) {
   async.waterfall([
     async.apply(glob, packagePattern),
     function (files, callback) {
-      fs.move(files[0], options.dest, {clobber: true}, callback);
+      async.each(files, function (file) {
+        var dest = options.rename(options.dest, path.basename(file));
+        fs.move(file, _.template(dest)(options), {clobber: true}, callback);
+      }, callback);
     }
   ], function (err) {
-    callback(err && new Error('Error moving package: ' + (err.message || err)), dir);
+    callback(err && new Error('Error moving package files: ' + (err.message || err)), dir);
   });
 };
 
