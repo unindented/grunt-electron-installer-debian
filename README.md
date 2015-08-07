@@ -41,7 +41,27 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 ### Usage
 
-To create a `.deb` package from your app:
+Say your app lives in `path/to/app`, and has a structure like this:
+
+```
+$ tree path/to/app/ -L 2
+path/to/app/
+├── LICENSE
+├── index.js
+├── main
+│   ├── index.js
+│   └── squirrel.js
+├── node_modules
+│   ├── fs-plus
+│   └── yargs
+├── package.json
+└── renderer
+    ├── index.css
+    ├── index.html
+    └── index.js
+```
+
+To create a `.deb` package from your app, the configuration for your task would look like this:
 
 ```js
 'electron-debian-installer': {
@@ -55,7 +75,9 @@ To create a `.deb` package from your app:
 }
 ```
 
-To create different packages for different architectures:
+The task will try to extract all necessary information from your `package.json`, and then generate your package at `path/to/out`.
+
+You can also create different packages for different architectures, while manually overriding certain options:
 
 ```js
 'electron-debian-installer': {
