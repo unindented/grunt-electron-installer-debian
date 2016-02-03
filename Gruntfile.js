@@ -19,7 +19,7 @@ module.exports = function (grunt) {
       ]
     },
 
-    'electron-debian-installer': {
+    'electron-installer-debian': {
       options: {
         productDescription: 'Just a test.',
         section: 'devel',
@@ -78,7 +78,7 @@ module.exports = function (grunt) {
 
   // Whenever the "test" task is run, first lint everything, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'eslint', 'electron-debian-installer', 'nodeunit'])
+  grunt.registerTask('test', ['clean', 'eslint', 'electron-installer-debian', 'nodeunit'])
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['test'])

@@ -3,7 +3,7 @@
 var installer = require('electron-installer-debian')
 
 module.exports = function (grunt) {
-  grunt.registerMultiTask('electron-debian-installer',
+  grunt.registerMultiTask('electron-installer-debian',
     'Create a Debian package for your Electron app.',
     function () {
       var done = this.async()
