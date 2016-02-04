@@ -1,3 +1,5 @@
+![Electron Installer for Debian](resources/logo.png)
+
 # grunt-electron-installer-debian [![Version](https://img.shields.io/npm/v/grunt-electron-installer-debian.svg)](https://www.npmjs.com/package/grunt-electron-installer-debian) [![Build Status](https://img.shields.io/travis/unindented/grunt-electron-installer-debian.svg)](http://travis-ci.org/unindented/grunt-electron-installer-debian) [![Dependency Status](https://img.shields.io/gemnasium/unindented/grunt-electron-installer-debian.svg)](https://gemnasium.com/unindented/grunt-electron-installer-debian)
 
 > Create a Debian package for your Electron app.
