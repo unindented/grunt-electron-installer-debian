@@ -3,6 +3,9 @@
 > Create a Debian package for your Electron app.
 
 
+🚨 This package has been renamed to `grunt-electron-installer-debian`! 🚨
+
+
 ## Requirements
 
 This tool requires `fakeroot` and `dpkg` to build the `.deb` package.
