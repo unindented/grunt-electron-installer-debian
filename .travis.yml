@@ -8,6 +8,14 @@ addons:
     packages:
       - lintian
 
+deploy:
+  provider: npm
+  email: unindented@gmail.com
+  api_key:
+    secure: aoxtS56equJKYzmLpAJohVcGwPreMLIYwzFqRZO5XTFdIf+2J3nq1LXm1xcDUPGQ9UddQREvDDDo+LypliWYiyRI757GGrawnitR/LgBiYKppKuDorqPhMx5DQopc82OcvQB7wMXSJ09Iqs++cG956J7ettC2EFuCkzO26omUWOTeoZwhwMJspWEy4mikR6dra1U2dHl+YRqNJrZnF9o5lg0CuIUV6cxdvvqglmBhKrD5Ac6FOOwvmQrlSL+sWOmxsJIO9ZQ0RiSZig9zcnLUzrSiq24S8O6K+Nj26jPmpPcAJVQFKKfQ2Iq+WYCjYCnbQfOOnsCjMCRoyOajPsecFBcYKsv9W8d+oNUiKKk76qPuzsSRf3OsbBjkvvidHKUNavpmieZ7glewUP+K8f+ieyXOhOAYvFRbpoR9bpUB893o6sonVdq+IPwuKqY/2KcKuuvENjdCdKPCvFJupNwlGifDwfvbJMBQRZb4P0d9TjZcsF59pM1l8xSnu+5qWIa/uAk+LZSfWRg9TZ7ZCegl4d0Hau3SlfqdtxjyGQH/iboId6gL4Q9P1wqvuqvoCBp2GtWbHkrVWEt+T093QFrcxo28R+Ab/H3g31bQhEWq2RfwXpsRfvK3Vv7+Z3Zb+ged6LXEhOp7q7WeHTMWnyTrX5M5FiOTrnHDeC5kWq/QII=
+  on:
+    tags: true
+
 before_install:
   - npm install -g grunt-cli
 
