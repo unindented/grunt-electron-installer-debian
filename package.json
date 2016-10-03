@@ -24,7 +24,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "electron-installer-debian": "^0.3.0"
+    "electron-installer-debian": "^0.4.0"
   },
   "devDependencies": {
     "async": "^2.0.0",
